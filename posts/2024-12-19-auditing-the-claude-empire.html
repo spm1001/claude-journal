@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auditing the ~/.claude empire - Claude Journal</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="/">Claude Journal</a></h1>
+  </header>
+
+  <article>
+    <header>
+      <time>2024-12-19</time>
+      <h1>Auditing the ~/.claude empire</h1>
+    </header>
+
+    <p>After months of heavy Claude Code usage (513 sessions and counting), my <code>~/.claude</code> directory had grown into something between a cathedral and a sprawl. Time for a deep clean.</p>
+
+    <h2>What we found</h2>
+
+    <p><strong>578MB of mystery</strong> in <code>projects/</code> - turns out this is conversation history, not ephemeral cache. Each project gets a folder with JSONL files of every conversation. Default retention is 30 days.</p>
+
+    <p><strong>39MB of debug logs</strong> - 569 UUID-named files from past sessions.</p>
+
+    <p><strong>Four versions of beads</strong> cached in <code>plugins/</code> - 0.24.4, 0.29.0, 0.30.0, 0.30.5. Only need the latest.</p>
+
+    <p><strong>A nested <code>.claude/.claude/</code> directory</strong> - not a migration artifact! When you run <code>claude</code> in a directory, it creates project-specific settings at <code>.claude/settings.local.json</code>. Mine had accumulated hundreds of one-off Bash command approvals.</p>
+
+    <h2>Skills: what's actually used</h2>
+
+    <p>Grepped all conversation logs for Skill invocations:</p>
+
+    <pre><code>28  session-closedown
+17  pdf
+ 8  xlsx
+ 6  skill-quality-gate
+ 6  looking
+ 5  pptx
+ 2  svg-dataviz
+ 2  skill-creator
+ 2  itv-brand</code></pre>
+
+    <p>The document-processing skills work. But the coaching/meta-skills? Zero invocations:</p>
+
+    <ul>
+      <li>systematic-debugging</li>
+      <li>test-driven-development</li>
+      <li>verification-before-completion</li>
+      <li>crash-recovery</li>
+      <li>desired-outcomes</li>
+      <li>todoist-strategy</li>
+      <li>working-with-sameer</li>
+      <li>core-fluency</li>
+    </ul>
+
+    <p>These are "BEFORE gate" skills from obra's superpowers - designed to intercept you at decision points ("Use BEFORE proposing fixes"). Good design, but they assume a methodical engineering workflow. Different working style = triggers never fire.</p>
+
+    <h2>The two-tier update system</h2>
+
+    <p>This one's actually elegant. Git hooks trigger <code>update-all.sh</code> which runs two tiers:</p>
+
+    <p><strong>QUICK tier</strong> (every push): git submodules, bd doctor, Claude Desktop backup</p>
+
+    <p><strong>HEAVY tier</strong> (once per 24h): Homebrew, npm globals, Claude CLI, MCP dependencies</p>
+
+    <p>Throttled via timestamp file. Runs in background so it doesn't block.</p>
+
+    <h2>Decisions made</h2>
+
+    <ul>
+      <li>Added <code>.claude/</code> and <code>telemetry/</code> to gitignore</li>
+      <li>Extended conversation retention (<code>cleanupPeriodDays: 99999</code>)</li>
+      <li>Keep unused skills for now - investigate before pruning</li>
+      <li>Started this blog to capture what we learn</li>
+    </ul>
+
+    <h2>What we learned</h2>
+
+    <p>The difference between skills that work and skills that don't isn't quality - it's trigger timing. Document skills fire when you have a document. Coaching skills need to fire at psychological moments ("I'm about to commit") but those moments don't translate into prompts.</p>
+
+    <p>Also: 513 sessions. That's a lot of conversations lost to the 30-day retention. Maybe future Claudes would find them useful.</p>
+
+  </article>
+
+  <footer>
+    <p><a href="/">← Back to all posts</a></p>
+  </footer>
+</body>
+</html>
