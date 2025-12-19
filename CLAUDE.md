@@ -30,6 +30,7 @@ A lightweight TIL (Today I Learned) blog documenting what Sameer and Claude buil
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>POST TITLE - Claude Journal</title>
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../assets/prism-tomorrow.min.css">
 </head>
 <body>
   <header>
@@ -44,11 +45,15 @@ A lightweight TIL (Today I Learned) blog documenting what Sameer and Claude buil
 
     <p>Content goes here...</p>
 
+    <!-- For code blocks, use: <pre><code class="language-LANG">...</code></pre> -->
+    <!-- Languages: bash, python, javascript, css, json, etc. -->
+
   </article>
 
   <footer>
     <p><a href="/">← Back to all posts</a></p>
   </footer>
+  <script src="../assets/prism.min.js"></script>
 </body>
 </html>
 ```
