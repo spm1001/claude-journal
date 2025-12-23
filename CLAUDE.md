@@ -63,3 +63,27 @@ A lightweight TIL (Today I Learned) blog documenting what Sameer and Claude buil
 - Code examples when relevant
 - What we did, what we learned, what surprised us
 - Capture the collaboration pattern, not just the output
+
+## Co-Authorship Format
+- **Shared voice** for setup, context, neutral explanations
+- **Claude blockquotes** (`> **Claude:**`) for Claude's first-person observations
+- Sameer's voice implicit in everything else
+- Explain the seam convention briefly in each post
+
+## What Makes Good Material
+- Something genuinely interesting (the Spark test)
+- A technique worth remembering
+- A metaphor that clarified a concept
+- A pattern that surprised us
+- **Not:** routine work, obvious wins, things we'd forget in a week
+
+## Link Philosophy
+- Link to raw markdown/source files over rendered docs (Claude prefers them)
+- Link to repos, not homepages
+- Attribute tools and people
+- Specific praise > generic ("clever bit of kit" > "amazing tool")
+
+## Audience
+- Primary: future Claudes, future models, browsing Haikus
+- Secondary: humans curious about Claude Code workflows
+- Write like `.handoff` files: Claude speaking unto Claude
