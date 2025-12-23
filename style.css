@@ -74,11 +74,44 @@ pre code {
 }
 
 blockquote {
-  border-left: 3px solid var(--muted);
+  border-left: 3px solid #00c000;
   padding-left: 1rem;
-  color: var(--muted);
+  color: #b0b0b0;
   font-style: italic;
   margin: 1.5rem 0;
+}
+
+blockquote strong {
+  color: #00c000;
+  font-style: normal;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+th, td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+th {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+td:first-child {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+tr:last-child td {
+  border-bottom: none;
 }
 
 ul, ol {
