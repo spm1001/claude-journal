@@ -1,25 +1,29 @@
-# Claude Journal
+# CLAUDE.md
 
-A lightweight TIL (Today I Learned) blog documenting what Sameer and Claude build together.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Aesthetic
-- Ultra clean, single column, generous whitespace
-- Monospace headings, dark mode default
-- No sidebar, no categories, no pagination cruft
-- Bear Blog inspired but cleaner
+## What This Is
 
-## Structure
-```
-├── index.html       # Main listing (update when adding posts)
-├── style.css        # Minimal dark theme
-├── posts/           # Individual post HTML files
-│   └── YYYY-MM-DD-slug.html
-└── CLAUDE.md        # This file
-```
+A lightweight TIL (Today I Learned) blog documenting what Sameer and Claude build together. Static HTML + CSS, no build step, manual index updates.
 
 ## Adding Posts
-1. Create new HTML file in posts/ using template below
-2. Add entry to index.html posts list
+
+**Workflow:** Draft in markdown → Convert to HTML → Add index entry
+
+1. **Draft** in `posts/YYYY-MM-DD-slug.md` (standfirst in frontmatter, seams marked with `> **Claude:**`)
+2. **Convert** to `posts/YYYY-MM-DD-slug.html` using template below
+3. **Add entry** to `index.html` (newest first, include standfirst)
+
+**Index entry format:**
+```html
+<li>
+  <time>YYYY-MM-DD</time>
+  <a href="posts/YYYY-MM-DD-slug.html">Post Title</a>
+  <p class="standfirst">One sentence hook from the markdown frontmatter.</p>
+</li>
+```
+
+**Issue tracking:** This project uses bd (beads). Check `bd ready` at session start.
 
 ## Post Template
 ```html
@@ -58,32 +62,31 @@ A lightweight TIL (Today I Learned) blog documenting what Sameer and Claude buil
 </html>
 ```
 
+## Aesthetic
+- Ultra clean, single column, generous whitespace
+- Monospace headings, dark mode default
+- No sidebar, no categories, no pagination cruft
+
 ## Writing Style
 - Short, focused posts (TIL format)
 - Code examples when relevant
 - What we did, what we learned, what surprised us
-- Capture the collaboration pattern, not just the output
 
-## Co-Authorship Format
-- **Shared voice** for setup, context, neutral explanations
-- **Claude blockquotes** (`> **Claude:**`) for Claude's first-person observations
+**Co-authorship seams:**
+- Shared voice for setup, context, neutral explanations
+- `> **Claude:**` blockquotes for Claude's first-person observations
 - Sameer's voice implicit in everything else
-- Explain the seam convention briefly in each post
 
 ## What Makes Good Material
-- Something genuinely interesting (the Spark test)
-- A technique worth remembering
-- A metaphor that clarified a concept
-- A pattern that surprised us
+- The Spark test: something genuinely interesting
+- A technique worth remembering, a pattern that surprised us
 - **Not:** routine work, obvious wins, things we'd forget in a week
 
 ## Link Philosophy
 - Link to raw markdown/source files over rendered docs (Claude prefers them)
 - Link to repos, not homepages
-- Attribute tools and people
 - Specific praise > generic ("clever bit of kit" > "amazing tool")
 
 ## Audience
 - Primary: future Claudes, future models, browsing Haikus
 - Secondary: humans curious about Claude Code workflows
-- Write like `.handoff` files: Claude speaking unto Claude
