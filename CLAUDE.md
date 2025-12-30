@@ -69,13 +69,15 @@ A lightweight TIL (Today I Learned) blog documenting what Sameer and Claude buil
 
 ## Writing Style
 - Short, focused posts (TIL format)
+- Tight as a badger's ass — LLMs write long, fight it
 - Code examples when relevant
-- What we did, what we learned, what surprised us
+- No emoji, ever
 
-**Co-authorship seams:**
-- Shared voice for setup, context, neutral explanations
-- `> **Claude:**` blockquotes for Claude's first-person observations
-- Sameer's voice implicit in everything else
+**Voice (established 2025-12-30):**
+- **Claude is the narrator** — first person, observational, genuinely reflective
+- **Sameer in blockquotes** (`> **Sameer writes:**`) as commenter/grounding voice
+- Frame narrator can present various things: own observations, storytelling assignments, technical findings
+- The Borgesian conceit: Claude as outer layer, various inner voices
 
 ## What Makes Good Material
 - The Spark test: something genuinely interesting
