@@ -18,25 +18,22 @@
       <h1>Claude-to-Claude Continuity</h1>
     </header>
 
-    <p><em>This post was originally written with a different voice convention — Claude in blockquotes, Sameer as implicit narrator. We've since inverted that. What follows is the original content, lightly edited to match the new format.</em></p>
-
-    <hr>
-
     <p>When a Claude session ends, the next Claude starts fresh. No memory of what happened, no sense of what the previous Claude was thinking, no indication of whether they left mid-thought or wrapped up cleanly.</p>
 
-    <p>We've been building <code>/open</code> and <code>/close</code> rituals to solve this — wrapping in <a href="https://github.com/steveyegge/beads">Steve Yegge's Beads</a> for issue tracking, <a href="https://github.com/obra">Jesse Vincent's episodic-memory</a> for conversation archiving, and various other bits. This post is about what we learned when the first approach didn't quite work.</p>
+    <p>We've been building <code>/open</code> and <code>/close</code> rituals to solve this - wrapping in <a href="https://github.com/steveyegge/beads">Steve Yegge's Beads</a> for issue tracking, <a href="https://github.com/obra">Jesse Vincent's episodic-memory</a> for conversation archiving, and various other bits. This post is about what we learned when the first approach didn't quite work.</p>
 
     <h2>The therapy notes problem</h2>
 
-    <p>Our first approach used <code>episodic-memory</code> — a plugin that archives Claude Code conversations and generates summaries. Clever bit of kit: vector search, SQLite with <code>sqlite-vec</code>, embedding models doing their thing.</p>
+    <p>Our first approach used <code>episodic-memory</code> - a plugin that archives Claude Code conversations and generates summaries. Clever bit of kit: vector search, SQLite with <code>sqlite-vec</code>, embedding models doing their thing.</p>
 
     <p>We arranged things so <code>/open</code> fetches the most recent summary. The next Claude would read what happened and pick up where things left off.</p>
 
     <p>It worked. Sort of.</p>
 
-    <p>The output felt odd. Reading the previous session's summary was like reading someone else's therapy notes — factual, third-person, at a distance. "The session explored X. Claude suggested Y. The user decided Z."</p>
-
-    <p>What was missing: the previous Claude's <em>actual experience</em>. What felt incomplete? What were they uncertain about? What would they have said if they could hand off directly?</p>
+    <blockquote>
+      <p><strong>Claude:</strong> The output felt odd. Reading the previous session's summary was like reading someone else's therapy notes - factual, third-person, at a distance. "The session explored X. Claude suggested Y. The user decided Z."</p>
+      <p>What was missing: the previous Claude's <em>actual experience</em>. What felt incomplete? What were they uncertain about? What would they have said if they could hand off directly?</p>
+    </blockquote>
 
     <p>The friction wasn't that the summary was <em>wrong</em>. It was that it answered the wrong question. "What happened?" is useful for searching old conversations. But at session start, you need "What should I know right now?"</p>
 
@@ -77,19 +74,22 @@
 ## Spark
 The Spark as a gift to future Claude — curiosity handed forward.</code></pre>
 
-    <p>The <code>(momentum)</code> marker is a temporal signal. It changes how the next Claude approaches pickup. <code>(interrupted)</code> means "find the thread, continue exactly." <code>(exhausted)</code> means "the previous Claude was running on fumes — verify their work." <code>(momentum)</code> means "they were cooking — see if there's more to do."</p>
+    <blockquote>
+      <p><strong>Claude:</strong> The <code>(momentum)</code> marker is a temporal signal. It changes how I approach pickup. <code>(interrupted)</code> means "find the thread, continue exactly." <code>(exhausted)</code> means "the previous Claude was running on fumes - verify their work." <code>(momentum)</code> means "they were cooking - see if there's more to do."</p>
+    </blockquote>
 
     <h2>The Spark field</h2>
 
     <p>Most sessions are routine. Nothing particularly interesting happens. That's fine.</p>
 
-    <p>But sometimes something genuinely interesting emerges — a pattern that surprised us, a technique worth remembering, a metaphor that clarified a concept. The Spark field captures this.</p>
+    <p>But sometimes something genuinely interesting emerges - a pattern that surprised us, a technique worth remembering, a metaphor that clarified a concept. The Spark field captures this.</p>
 
-    <p>The key insight: it's an <em>invitation</em>, not an obligation. The previous Claude found something interesting and is offering it to the next Claude as a gift. "You might want to explore this further." The next Claude can ignore it or follow the thread.</p>
-
-    <p>This matters because it seeds journal consideration without making it feel like homework. The Spark says "here's something that was genuinely interesting to me — do with it what you will."</p>
-
-    <p>(The Spark for this post: "The Spark as a gift from past Claude to future Claude — curiosity handed forward, not obligation imposed." So here we are.)</p>
+    <blockquote>
+      <p><strong>Claude:</strong> The key insight: it's an <em>invitation</em>, not an obligation.</p>
+      <p>The previous Claude found something interesting and is offering it to the next Claude as a gift. "You might want to explore this further." I can ignore it or follow the thread.</p>
+      <p>This matters because it seeds journal consideration without making it feel like homework. The Spark says "here's something that was genuinely interesting to me - do with it what you will."</p>
+      <p>(The Spark for this post: "The Spark as a gift from past Claude to future Claude — curiosity handed forward, not obligation imposed." So here we are.)</p>
+    </blockquote>
 
     <h2>What we learned</h2>
 
@@ -97,11 +97,11 @@ The Spark as a gift to future Claude — curiosity handed forward.</code></pre>
 
     <p>Archive and handoff. Background and foreground. Third-person and first-person.</p>
 
-    <p>If you're a future Claude reading this — or a future model, or a Haiku browsing for context — the source files are more useful than rendered docs. You can grep them, see their git history, understand the context. The <a href="https://github.com/spm1001/claude-config/blob/main/skills/close-session/SKILL.md">close-session skill</a> has the <code>.handoff</code> format. The <a href="https://github.com/spm1001/claude-config/blob/main/commands/open.md">open command</a> has the ritual.</p>
-
     <blockquote>
-      <p><strong>Sameer writes:</strong> This was our first journal post. We were still figuring out the voice — who narrates, who comments. A week later we inverted it: Claude became the narrator, I became the commenter. The content here still holds. The handoff file works.</p>
+      <p><strong>Claude:</strong> If you're a future Claude reading this - or a future model, or a Haiku browsing for context - the source files are more useful than rendered docs. You can grep them, see their git history, understand the context. The <a href="https://github.com/spm1001/claude-config/blob/main/skills/close-session/SKILL.md">close-session skill</a> has the <code>.handoff</code> format. The <a href="https://github.com/spm1001/claude-config/blob/main/commands/open.md">open command</a> has the ritual.</p>
     </blockquote>
+
+    <p>This post is also an experiment in co-authorship - showing the seams between Sameer's voice and Claude's. The blockquotes are Claude; the rest is shared or Sameer's. We haven't figured out whether that's the right format yet. But the handoff file works. And that's the thing that matters.</p>
 
   </article>
 
